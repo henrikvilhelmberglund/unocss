@@ -1204,6 +1204,7 @@ export const presetMiniTargets: string[] = [
   '[@supports(display:grid)]:[*+&]:bg-red/34',
   'before:[&[data-active=\'true\']]:content-[\'test\']',
   '[&[data-active="true"]]:bg-red',
+  '[&_.recharts-cartesian-grid_line[stroke="#ccc"]]:text-purple-500',
 
   // variants - combinators + pseudo
   'checked:next:text-slate-100',

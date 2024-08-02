@@ -1163,3 +1163,4 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .uno-layer-\[uno_css\]\:block{display:block;}
 /* layer: uno_css */
 .uno-layer-uno_css\:block{display:block;}
+.\[\&_\.recharts-cartesian-grid_line\[stroke\=\'\#ccc\'\]\]\:text-purple-500 .recharts-cartesian-grid line[stroke='#ccc']{--un-text-opacity:1;color:rgb(168 85 247 / var(--un-text-opacity));}

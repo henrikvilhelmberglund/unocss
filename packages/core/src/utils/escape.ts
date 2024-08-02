@@ -1,5 +1,5 @@
 export function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+  return string.replace(/[.*+?^#${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
 }
 
 // https://drafts.csswg.org/cssom/#serialize-an-identifier
@@ -22,6 +22,12 @@ export function escapeSelector(str: string): string {
     // (U+FFFD).
     if (codeUnit === 0x0000) {
       result += '\uFFFD'
+      continue
+    }
+
+    // Pound sign
+    if (codeUnit === 35) {
+      result += '\\#'
       continue
     }
 

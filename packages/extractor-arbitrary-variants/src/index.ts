@@ -1,6 +1,7 @@
 import type { Extractor } from '@unocss/core'
 import { defaultSplitRE, isValidSelector } from '@unocss/core'
 import { restoreSkipCode, transformSkipCode } from '../../shared-integration/src/utils'
+import { quotedAttributeValueSplitRE } from '../../core/src/extractors/split'
 import { removeSourceMap } from './source-map'
 
 export const quotedArbitraryValuesRE
@@ -33,14 +34,27 @@ export function splitCodeWithArbitraryVariants(code: string): string[] {
   if (!code)
     return result
 
-  code
-    .split(defaultSplitRE)
-    .forEach((match) => {
-      if (match.includes(skipFlag))
-        match = restoreSkipCode(match, skipMap)
-      if (isValidSelector(match) && !arbitraryPropertyCandidateRE.test(match))
-        result.push(match)
-    })
+  if (code.includes(']]') && (!code.includes('="') || !code.includes('=\''))) {
+    code
+      .split(quotedAttributeValueSplitRE)
+      .forEach((match) => {
+        if (match.includes(skipFlag))
+          match = restoreSkipCode(match, skipMap)
+        if (isValidSelector(match) && !arbitraryPropertyCandidateRE.test(match))
+          result.push(match)
+      })
+  }
+
+  else {
+    code
+      .split(defaultSplitRE)
+      .forEach((match) => {
+        if (match.includes(skipFlag))
+          match = restoreSkipCode(match, skipMap)
+        if (isValidSelector(match) && !arbitraryPropertyCandidateRE.test(match))
+          result.push(match)
+      })
+  }
 
   return result
 }

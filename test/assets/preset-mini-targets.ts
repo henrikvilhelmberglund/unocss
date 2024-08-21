@@ -860,7 +860,6 @@ export const presetMiniTargets: string[] = [
   'property-color',
   'property-background-color',
   'property-border-color',
-  'property-outline-color',
   'property-text-decoration-color',
   'property-fill',
   'property-stroke',
